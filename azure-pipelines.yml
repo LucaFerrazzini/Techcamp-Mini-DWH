@@ -15,9 +15,9 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
-        echo Creating File
-        cd sql
-        Get-Content 00_SOURCE.sql, 10_ODS.sql, 20_CORE.sql, 30_MART.sql | Set-Content DEPLOYMENT_SCRIPT.sql
+          echo Creating File
+          cd sql
+          Get-Content 00_SOURCE.sql, 10_ODS.sql, 20_CORE.sql, 30_MART.sql | Set-Content DEPLOYMENT_SCRIPT.sql
     - task: SqlAzureDacpacDeployment@1
       inputs:
         azureSubscription: $(subscription)
