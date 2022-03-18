@@ -1,5 +1,8 @@
-CREATE SCHEMA [ODS]
-GO
+IF NOT EXISTS (SELECT * FROM sys.schemas WHERE name = 'ODS')
+BEGIN
+        CREATE SCHEMA [ODS]
+        GO
+END
  
 /****** Object:  Table [dbo].[PayloadHash]    Script Date: 16.03.2022 17:21:12 ******/
 SET ANSI_NULLS ON
@@ -8,7 +11,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
  
-IF OBJECT_ID('[ODS].[ODS_CAR]', 'U') IS NOT NULL
+IF OBJECT_ID('[ODS].[ODS_CAR]', 'U') IS NULL
 BEGIN
 CREATE TABLE [ODS].[ODS_CAR](
             [ID] INT,
@@ -18,7 +21,7 @@ CREATE TABLE [ODS].[ODS_CAR](
 )
 END
 
-IF OBJECT_ID('[ODS].[ODS_DRIVER]', 'U') IS NOT NULL
+IF OBJECT_ID('[ODS].[ODS_DRIVER]', 'U') IS NULL
 BEGIN
 CREATE TABLE [ODS].[ODS_DRIVER](
             [ID] INT,
@@ -28,9 +31,9 @@ CREATE TABLE [ODS].[ODS_DRIVER](
 )
 END
  
-IF OBJECT_ID('[ODS].[ODS_CAR_Loader]', 'U') IS NOT NULL
+IF OBJECT_ID('[ODS].[ODS_CAR_Loader]', 'U') IS NULL
 BEGIN
-        CREATE PROCEDURE [ODS].[ODS_CAR_Loader]
+        CREATE OR ALTER PROCEDURE [ODS].[ODS_CAR_Loader]
         AS
                     INSERT INTO [ODS].[ODS_CAR]
                     SELECT
@@ -42,9 +45,9 @@ BEGIN
         END
 END
 
-IF OBJECT_ID('[ODS].[ODS_DRIVER_Loader]', 'U') IS NOT NULL
+IF OBJECT_ID('[ODS].[ODS_DRIVER_Loader]', 'U') IS NULL
 BEGIN
-        CREATE PROCEDURE [ODS].[ODS_DRIVER_Loader]
+        CREATE OR ALTER PROCEDURE [ODS].[ODS_DRIVER_Loader]
         AS
                     INSERT INTO [ODS].[ODS_DRIVER]
                     SELECT
