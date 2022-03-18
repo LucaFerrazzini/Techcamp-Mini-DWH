@@ -9,51 +9,49 @@ GO
  
 SET QUOTED_IDENTIFIER ON
 GO
- 
-IF OBJECT_ID('[ODS].[ODS_CAR]', 'U') IS NULL
+
+IF OBJECT_ID('[ODS].[ODS_CAR]', 'U') IS NOT NULL
 BEGIN
+    DROP TABLE [ODS].[ODS_CAR]
+END
 CREATE TABLE [ODS].[ODS_CAR](
             [ID] INT,
             [NAME] [nvarchar](40) NULL,
             [RELEASE_YEAR] DATETIME NULL,
             [PRICE] [INT] NULL
 )
-END
 
-IF OBJECT_ID('[ODS].[ODS_DRIVER]', 'U') IS NULL
+IF OBJECT_ID('[ODS].[ODS_DRIVER]', 'U') IS NOT NULL
 BEGIN
+    DROP TABLE [ODS].[ODS_DRIVER]
+END
 CREATE TABLE [ODS].[ODS_DRIVER](
             [ID] INT,
             [NAME] [nvarchar](40) NULL,
             [CAR_ID] INT NULL,
             [AGE] [INT] NULL
 )
-END
+
  
-IF OBJECT_ID('[ODS].[ODS_CAR_Loader]', 'U') IS NULL
-BEGIN
-        CREATE OR ALTER PROCEDURE [ODS].[ODS_CAR_Loader]
-        AS
-                    INSERT INTO [ODS].[ODS_CAR]
-                    SELECT
-                    [ID],
-                    [NAME],
-                    [RELEASE_YEAR],
-                    [PRICE]
-                    FROM [SOURCE].[SOURCE_CAR]
-        END
+CREATE OR ALTER PROCEDURE [ODS].[ODS_CAR_Loader]
+AS
+                INSERT INTO [ODS].[ODS_CAR]
+                SELECT
+                [ID],
+                [NAME],
+                [RELEASE_YEAR],
+                [PRICE]
+                FROM [SOURCE].[SOURCE_CAR]
 END
 
-IF OBJECT_ID('[ODS].[ODS_DRIVER_Loader]', 'U') IS NULL
-BEGIN
-        CREATE OR ALTER PROCEDURE [ODS].[ODS_DRIVER_Loader]
-        AS
-                    INSERT INTO [ODS].[ODS_DRIVER]
-                    SELECT
-                    [ID],
-                    [NAME],
-                    [CAR_ID],
-                    [AGE]
-                    FROM [SOURCE].[SOURCE_DRIVER]
-        END
+
+CREATE OR ALTER PROCEDURE [ODS].[ODS_DRIVER_Loader]
+AS
+                INSERT INTO [ODS].[ODS_DRIVER]
+                SELECT
+                [ID],
+                [NAME],
+                [CAR_ID],
+                [AGE]
+                FROM [SOURCE].[SOURCE_DRIVER]
 END
