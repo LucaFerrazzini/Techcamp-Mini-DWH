@@ -1,0 +1,8 @@
+IF OBJECT_ID('[SOURCE].[SOURCE_CAR]', 'U') IS NOT NULL
+BEGIN
+CREATE TABLE [SOURCE].[SOURCE_CAR](
+            [NAME] [char](40) NULL,
+            [RELEASE_YEAR] DATETIME NULL,
+            [PRICE] [INT] NULL
+)
+END
