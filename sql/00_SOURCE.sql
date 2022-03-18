@@ -10,10 +10,10 @@ BEGIN
 END
 
 CREATE TABLE [SOURCE].[SOURCE_CAR](
-            [ID] INT,
-            [NAME] [nvarchar](40) NULL,
-            [RELEASE_YEAR] DATETIME NULL,
-            [PRICE] [INT] NULL
+    [ID] INT,
+    [NAME] [nvarchar](40) NULL,
+    [RELEASE_YEAR] DATETIME NULL,
+    [PRICE] [INT] NULL
 )
 
 
@@ -23,10 +23,10 @@ BEGIN
 END
 
 CREATE TABLE [SOURCE].[SOURCE_DRIVER](
-            [ID] INT,
-            [NAME] [nvarchar](40) NULL,
-            [CAR_ID] INT NULL,
-            [AGE] [INT] NULL
+    [ID] INT,
+    [NAME] [nvarchar](40) NULL,
+    [CAR_ID] INT NULL,
+    [AGE] [INT] NULL
 )
  
 
