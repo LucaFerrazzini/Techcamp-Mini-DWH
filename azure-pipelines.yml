@@ -11,7 +11,7 @@ stages:
     pool:
       vmImage: windows-latest
     steps:
-    - task: SqlAzureSQLDeployment@1
+    - task: SqlAzureDacpacDeployment@1
       inputs:
         serverName: mini-dwh-server # Required when authenticationType == Server || AuthenticationType == AadAuthenticationPassword || AuthenticationType == AadAuthenticationIntegrated || AuthenticationType == servicePrincipal
         databaseName: mini-dwh-db # Required when authenticationType == Server || AuthenticationType == AadAuthenticationPassword || AuthenticationType == AadAuthenticationIntegrated || AuthenticationType == servicePrincipal
