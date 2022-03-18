@@ -14,7 +14,7 @@ stages:
     - task: SqlAzureDacpacDeployment@1
       inputs:
         azureSubscription: $(subscription)
-        serverName: mini-dwh-server # Required when authenticationType == Server || AuthenticationType == AadAuthenticationPassword || AuthenticationType == AadAuthenticationIntegrated || AuthenticationType == servicePrincipal
+        serverName: mini-dwh-server.database.windows.net # Required when authenticationType == Server || AuthenticationType == AadAuthenticationPassword || AuthenticationType == AadAuthenticationIntegrated || AuthenticationType == servicePrincipal
         databaseName: mini-dwh-db # Required when authenticationType == Server || AuthenticationType == AadAuthenticationPassword || AuthenticationType == AadAuthenticationIntegrated || AuthenticationType == servicePrincipal
         sqlUsername: $(sqlUserUsername) # Required when authenticationType == Server
         sqlPassword: $(sqlUserPassword) # Required when authenticationType == Server
