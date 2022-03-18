@@ -24,7 +24,8 @@ CREATE TABLE [CORE].[CORE_DRIVER](
             [CAR_ID] INT NULL,
             [AGE] [INT] NULL
 )
- 
+GO
+
 CREATE OR ALTER PROCEDURE [CORE].[CORE_CAR_Loader]
 AS
             INSERT INTO [CORE].[CORE_CAR]
@@ -35,6 +36,7 @@ AS
             [PRICE]
             FROM [ODS].[ODS_CAR]
 END
+GO
 
 CREATE OR ALTER PROCEDURE [CORE].[CORE_DRIVER_Loader]
 AS

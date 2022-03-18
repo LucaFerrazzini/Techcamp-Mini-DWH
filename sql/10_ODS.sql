@@ -31,8 +31,8 @@ CREATE TABLE [ODS].[ODS_DRIVER](
             [CAR_ID] INT NULL,
             [AGE] [INT] NULL
 )
+GO
 
- 
 CREATE OR ALTER PROCEDURE [ODS].[ODS_CAR_Loader]
 AS
                 INSERT INTO [ODS].[ODS_CAR]
@@ -43,7 +43,7 @@ AS
                 [PRICE]
                 FROM [SOURCE].[SOURCE_CAR]
 END
-
+GO
 
 CREATE OR ALTER PROCEDURE [ODS].[ODS_DRIVER_Loader]
 AS

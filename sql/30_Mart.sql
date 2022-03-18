@@ -12,6 +12,7 @@ CREATE TABLE [MART].[MART_CAR_DRIVER](
             [NAME_DRIVER] [nvarchar](40) NULL,
             [NAME_CAR] [nvarchar](40) NULL
 )
+GO
 
 CREATE OR ALTER PROCEDURE [MART].[MART_CAR_Loader]
 AS
