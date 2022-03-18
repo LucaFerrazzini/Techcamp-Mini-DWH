@@ -35,7 +35,6 @@ BEGIN
         DEALLOCATE proc_cursor
 
         FETCH NEXT FROM schema_cursor INTO @current_schema; 
-
     END
 END
 GO
