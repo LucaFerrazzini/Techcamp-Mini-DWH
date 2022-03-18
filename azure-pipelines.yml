@@ -1,16 +1,22 @@
 trigger:
 - main
 
-pool:
-  vmImage: ubuntu-latest
+
 # Azure SQL Database deployment
 # Deploy an Azure SQL Database using DACPAC or run scripts using SQLCMD
-- task: SqlAzureDacpacDeployment@1
-  inputs:
-    serverName: mini-dwh-server # Required when authenticationType == Server || AuthenticationType == AadAuthenticationPassword || AuthenticationType == AadAuthenticationIntegrated || AuthenticationType == servicePrincipal
-    databaseName: mini-dwh-db # Required when authenticationType == Server || AuthenticationType == AadAuthenticationPassword || AuthenticationType == AadAuthenticationIntegrated || AuthenticationType == servicePrincipal
-    sqlUsername: $(sqlUserUsername) # Required when authenticationType == Server
-    sqlPassword: $(sqlUserPassword) # Required when authenticationType == Server
-    deployType: 'sqlTask' # Options: dacpacTask, sqlTask, inlineSqlTask
-    sqlFile: $(Build.SourcesDirectory)/sql/test_deploy.sql # Required when deployType == SqlTask
+stages:
+- stage: Deploy
+  jobs:
+  - job: Deploy
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - task: SqlAzureDacpacDeployment@1
+      inputs:
+        serverName: mini-dwh-server # Required when authenticationType == Server || AuthenticationType == AadAuthenticationPassword || AuthenticationType == AadAuthenticationIntegrated || AuthenticationType == servicePrincipal
+        databaseName: mini-dwh-db # Required when authenticationType == Server || AuthenticationType == AadAuthenticationPassword || AuthenticationType == AadAuthenticationIntegrated || AuthenticationType == servicePrincipal
+        sqlUsername: $(sqlUserUsername) # Required when authenticationType == Server
+        sqlPassword: $(sqlUserPassword) # Required when authenticationType == Server
+        deployType: 'sqlTask' # Options: dacpacTask, sqlTask, inlineSqlTask
+        sqlFile: $(Build.SourcesDirectory)/sql/test_deploy.sql # Required when deployType == SqlTask
 
