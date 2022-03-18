@@ -1,7 +1,6 @@
 IF NOT EXISTS (SELECT * FROM sys.schemas WHERE name = 'ODS')
 BEGIN
-        CREATE SCHEMA [ODS]
-        GO
+        EXEC('CREATE SCHEMA [ODS]')
 END
  
 /****** Object:  Table [dbo].[PayloadHash]    Script Date: 16.03.2022 17:21:12 ******/
