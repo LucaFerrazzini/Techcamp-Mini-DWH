@@ -16,6 +16,7 @@ GO
 
 CREATE OR ALTER PROCEDURE [MART].[MART_CAR_Loader]
 AS
+BEGIN
             INSERT INTO [MART].[MART_CAR_DRIVER]
             SELECT
             [DRIVER].[NAME],

@@ -35,6 +35,7 @@ GO
 
 CREATE OR ALTER PROCEDURE [ODS].[ODS_CAR_Loader]
 AS
+BEGIN
                 INSERT INTO [ODS].[ODS_CAR]
                 SELECT
                 [ID],
@@ -47,6 +48,7 @@ GO
 
 CREATE OR ALTER PROCEDURE [ODS].[ODS_DRIVER_Loader]
 AS
+BEGIN
                 INSERT INTO [ODS].[ODS_DRIVER]
                 SELECT
                 [ID],

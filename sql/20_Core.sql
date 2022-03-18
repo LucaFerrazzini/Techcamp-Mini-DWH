@@ -28,6 +28,7 @@ GO
 
 CREATE OR ALTER PROCEDURE [CORE].[CORE_CAR_Loader]
 AS
+BEGIN
             INSERT INTO [CORE].[CORE_CAR]
             SELECT
             [ID],
@@ -40,6 +41,7 @@ GO
 
 CREATE OR ALTER PROCEDURE [CORE].[CORE_DRIVER_Loader]
 AS
+BEGIN
             INSERT INTO [CORE].[CORE_DRIVER]
             SELECT
             [ID],
