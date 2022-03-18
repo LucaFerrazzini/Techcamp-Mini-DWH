@@ -51,3 +51,4 @@ BEGIN
     [AGE]
     FROM [ODS].[ODS_DRIVER]
 END
+GO
