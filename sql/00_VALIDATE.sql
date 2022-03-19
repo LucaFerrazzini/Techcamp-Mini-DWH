@@ -9,6 +9,8 @@ BEGIN
         RAISERROR('##vso[task.logissue type=error]SQL-Script contains synrtax-errors!',16,1);
         PRINT 'test';
         PRINT '##vso[task.logissue result=failed]SQL-Script contains synrtax-errors!';
+        RAISERROR('##vso[task.logissue result=failed]SQL-Script contains synrtax-errors!', 10, 1) WITH NOWAIT
+        RAISERROR('##vso[task.logissue type=error]SQL-Script contains synrtax-errors!', 10, 1) WITH NOWAIT
     END CATCH;
 END; -- IsValidSQL
 
