@@ -27,7 +27,7 @@ stages:
           ((Get-Content DEPLOYMENT_SCRIPT.sql) -replace "'","''") | Set-Content DEPLOYMENT_SCRIPT_CLEAN.sql
           Get-Content 00_VALIDATE.sql, DEPLOYMENT_SCRIPT_CLEAN.sql | Set-Content VALIDATION_SCRIPT.sql
           Add-Content VALIDATION_SCRIPT.sql -Value "'"
-          Write-Host "##vso[task.logissue result=failed]SQL-Script contains synrtax-errors!"
+          Write-Verbose -Verbose "##vso[task.logissue result=failed]SQL-Script contains synrtax-errors!"
     - task: SqlAzureDacpacDeployment@1
       inputs:
         azureSubscription: $(subscription)
