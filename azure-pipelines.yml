@@ -10,6 +10,11 @@ stages:
   - job: Validate
     pool:
       vmImage: windows-latest
+    variables:
+      server: $(server)
+      user: $(sqlUserUsername)
+      password: $(sqlUserPassword)
+      sqlFile: $(Build.SourcesDirectory)/sql/VALIDATION_SCRIPT.sql 
     steps:
     - task: PowerShell@2
       inputs:
@@ -28,7 +33,7 @@ stages:
           Get-Content 00_VALIDATE.sql, DEPLOYMENT_SCRIPT_CLEAN.sql | Set-Content VALIDATION_SCRIPT.sql
           Add-Content VALIDATION_SCRIPT.sql -Value "'"
 
-          Invoke-Sqlcmd -ServerInstance $(env:server) -Database "mini-dwh-db" -Username $(env:sqlUserUsername) -Password $(env:sqlUserPassword)  -Inputfile "$(env:Build.SourcesDirectory)/sql/VALIDATION_SCRIPT.sql"  -ConnectionTimeout 120 -Verbose
+          Invoke-Sqlcmd -ServerInstance $(server) -Database "mini-dwh-db" -Username $(user) -Password $(password)  -Inputfile sqlFile  -ConnectionTimeout 120 -Verbose
     - task: SqlAzureDacpacDeployment@1
       inputs:
         azureSubscription: $(subscription)
