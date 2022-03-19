@@ -6,9 +6,9 @@ BEGIN
     END TRY
     BEGIN CATCH
         RAISERROR ('SQL deployment script does contain syntax error!', -- Message text.  
-               17, -- Severity.  
+               18, -- Severity.  
                -1 -- State.  
-               ) WITH LOG; 
+               ); 
     END CATCH;
 END; -- IsValidSQL
 
