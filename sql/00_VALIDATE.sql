@@ -13,4 +13,4 @@ BEGIN
     RETURN(0);
 END; -- IsValidSQL
 
-EXEC IsValidSQL '
+EXEC IsValidSQL @sql = '
