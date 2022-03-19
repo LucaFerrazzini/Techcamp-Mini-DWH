@@ -28,7 +28,7 @@ stages:
           Get-Content 00_VALIDATE.sql, DEPLOYMENT_SCRIPT_CLEAN.sql | Set-Content VALIDATION_SCRIPT.sql
           Add-Content VALIDATION_SCRIPT.sql -Value "'"
           Write-Verbose -Verbose "##vso[task.logissue result=failed]SQL-Script contains synrtax-errors!"
-    - task: SqlDacpacDeploymentOnMachineGroup@0
+    - task: SqlAzureDacpacDeployment@1
       inputs:
         azureSubscription: $(subscription)
         serverName: mini-dwh-server.database.windows.net # Required when authenticationType == Server || AuthenticationType == AadAuthenticationPassword || AuthenticationType == AadAuthenticationIntegrated || AuthenticationType == servicePrincipal
@@ -37,7 +37,7 @@ stages:
         sqlPassword: $(sqlUserPassword) # Required when authenticationType == Server
         deployType: 'sqlTask' # Options: dacpacTask, sqlTask, inlineSqlTask
         sqlFile: $(Build.SourcesDirectory)/sql/VALIDATION_SCRIPT.sql # Required when deployType == SqlTask
-        AdditionalArgumentsSql: '-verbose'
+        AdditionalArgumentsSql: '-Verbose'
 - stage: Deploy
   jobs:
   - job: Deploy
