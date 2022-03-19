@@ -25,7 +25,10 @@ stages:
         sqlUsername: $(sqlUserUsername) # Required when authenticationType == Server
         sqlPassword: $(sqlUserPassword) # Required when authenticationType == Server
         deployType: 'sqlTask' # Options: dacpacTask, sqlTask, inlineSqlTask
-        sqlFile: $(Build.SourcesDirectory)/sql/DEPLOYMENT_SCRIPT.sql # Required when deployType == SqlTask
+        sqlFile: $(Build.SourcesDirectory)/sql/DEPLOYMENT_SCRIPT.sql # Required when deployType == SqlTask    
+  - job: HTTP request
+    pool: server
+    steps:
     - task: InvokeRESTAPI@1
       inputs:
         azureSubscription: $(subscription)
