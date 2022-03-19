@@ -5,8 +5,8 @@ BEGIN
         EXEC(@sql);
     END TRY
     BEGIN CATCH
-        RAISERROR ('SQL deployment script does contain syntax error!', -- Message text.  
-               18, -- Severity.  
+        RETURN RAISERROR ('SQL deployment script does contain syntax error!', -- Message text.  
+               16, -- Severity.  
                -1 -- State.  
                ); 
     END CATCH;
