@@ -5,9 +5,9 @@ trigger:
 # Azure SQL Database deployment
 # Deploy an Azure SQL Database using DACPAC or run scripts using SQLCMD
 stages:
-- stage: Deploy
-  jobs:
-  - job: Deploy
+- stage: Validate
+  jobs: 
+  - job: Validate
     pool:
       vmImage: windows-latest
     steps:
@@ -27,6 +27,12 @@ stages:
           ((Get-Content DEPLOYMENT_SCRIPT.sql) -replace "'","''") | Set-Content DEPLOYMENT_SCRIPT_CLEAN.sql
           Get-Content 00_VALIDATE.sql, DEPLOYMENT_SCRIPT_CLEAN.sql | Set-Content VALIDATION_SCRIPT.sql
           Add-Content VALIDATION_SCRIPT.sql -Value "'"
+- stage: Deploy
+  jobs:
+  - job: Deploy
+    pool:
+      vmImage: windows-latest
+    steps:
     - task: SqlAzureDacpacDeployment@1
       inputs:
         azureSubscription: $(subscription)
