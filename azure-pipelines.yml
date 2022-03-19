@@ -36,7 +36,7 @@ stages:
         sqlPassword: $(sqlUserPassword) # Required when authenticationType == Server
         deployType: 'SqlTask' # Options: dacpacTask, sqlTask, inlineSqlTask
         sqlFile: $(Build.SourcesDirectory)/sql/VALIDATION_SCRIPT.sql # Required when deployType == SqlTask
-        additionalArguments: '-verbose'
+        InlineAdditionalArguments: '-OutputSqlErrors'
 - stage: Deploy
   jobs:
   - job: Deploy
