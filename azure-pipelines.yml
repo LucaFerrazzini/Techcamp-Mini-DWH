@@ -10,11 +10,6 @@ stages:
   - job: Validate
     pool:
       vmImage: windows-latest
-    variables:
-      SERVER: $(server)
-      SQLUSERUSERNAME: $(sqlUserUsername)
-      SQLUSERPASSWORD: $(sqlUserPassword)
-      SQLFILE: $(Build.SourcesDirectory)/sql/VALIDATION_SCRIPT.sql 
     steps:
     - task: PowerShell@2
       inputs:
@@ -32,7 +27,6 @@ stages:
           ((Get-Content DEPLOYMENT_SCRIPT.sql) -replace "'","''") | Set-Content DEPLOYMENT_SCRIPT_CLEAN.sql
           Get-Content 00_VALIDATE.sql, DEPLOYMENT_SCRIPT_CLEAN.sql | Set-Content VALIDATION_SCRIPT.sql
           Add-Content VALIDATION_SCRIPT.sql -Value "'"
-          Invoke-Sqlcmd -ServerInstance $SERVER -Database "mini-dwh-db" -Username $SQLUSERUSERNAME -Password $SQLUSERPASSWORD  -Inputfile $SQLFILE  -ConnectionTimeout 120 -Verbose
     - task: SqlAzureDacpacDeployment@1
       inputs:
         azureSubscription: $(subscription)
@@ -40,9 +34,9 @@ stages:
         databaseName: mini-dwh-db # Required when authenticationType == Server || AuthenticationType == AadAuthenticationPassword || AuthenticationType == AadAuthenticationIntegrated || AuthenticationType == servicePrincipal
         sqlUsername: $(sqlUserUsername) # Required when authenticationType == Server
         sqlPassword: $(sqlUserPassword) # Required when authenticationType == Server
-        deployType: 'sqlTask' # Options: dacpacTask, sqlTask, inlineSqlTask
+        deployType: 'SqlTask' # Options: dacpacTask, sqlTask, inlineSqlTask
         sqlFile: $(Build.SourcesDirectory)/sql/VALIDATION_SCRIPT.sql # Required when deployType == SqlTask
-        AdditionalArguments: '-Verbose'
+        sqlAdditionalArguments: '-verbose'
 - stage: Deploy
   jobs:
   - job: Deploy
