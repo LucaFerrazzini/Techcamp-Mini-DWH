@@ -3,7 +3,7 @@ trigger:
 
 # Azure SQL Database deployment
 # Deploy an Azure SQL Database using DACPAC or run scripts using SQLCMD
-#stages:
+stages:
 #- stage: Deploy
 #  jobs:
 #  - job: Deploy
