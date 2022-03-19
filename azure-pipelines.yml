@@ -25,9 +25,8 @@ stages:
           echo Creating Validation File
           cd sql
           Get-Content 00_VALIDATE.sql | Set-Content VALIDATION_SCRIPT.sql
-          Add-Content VALIDATION_SCRIPT (Get-Content DEPLOYMENT_SCRIPT.sql -replace '`'' '`'`'')
+          Add-Content VALIDATION_SCRIPT | Get-Content DEPLOYMENT_SCRIPT.sql -replace "'" "''"
           Add-Content VALIDATION_SCRIPT.sql "'"
-          Get-Content VALIDATION_SCRIPT.sql
     - task: SqlAzureDacpacDeployment@1
       inputs:
         azureSubscription: $(subscription)
