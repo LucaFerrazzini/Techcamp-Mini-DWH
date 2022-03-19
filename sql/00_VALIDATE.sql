@@ -1,7 +1,7 @@
-CREATE OR ALTER IsValidSQL (@sql varchar(max)) AS
+CREATE OR ALTER PROCEDURE IsValidSQL (@sql varchar(max)) AS
 BEGIN
     BEGIN TRY
-        SET @sql = 'set parseonly on;'+@sql;
+        SET @sql = 'set parseonly on;' + @sql;
         EXEC(@sql);
     END TRY
     BEGIN CATCH
