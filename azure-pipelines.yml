@@ -1,6 +1,5 @@
 trigger:
-- main
-
+- feature/add-load-to-pipeline
 
 # Azure SQL Database deployment
 # Deploy an Azure SQL Database using DACPAC or run scripts using SQLCMD
@@ -27,4 +26,10 @@ stages:
         sqlPassword: $(sqlUserPassword) # Required when authenticationType == Server
         deployType: 'sqlTask' # Options: dacpacTask, sqlTask, inlineSqlTask
         sqlFile: $(Build.SourcesDirectory)/sql/DEPLOYMENT_SCRIPT.sql # Required when deployType == SqlTask
-
+    - task: InvokeRESTAPI@1
+      inputs:
+        azureSubscription: $(subscription)
+        method: 'POST' # Options: OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, PATCH
+        headers: '{Content-Type:application/json}' 
+        body: '{"status":"go"}'
+        waitForCompletion: 'false' # Options: true, false
