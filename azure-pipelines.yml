@@ -1,5 +1,5 @@
 trigger:
-- main
+- sql-syntax-check
 
 
 # Azure SQL Database deployment
