@@ -26,7 +26,7 @@ stages:
           cd sql
           Get-Content 00_VALIDATE.sql, DEPLOYMENT_SCRIPT.sql | Set-Content VALIDATION_SCRIPT.sql
           Add-Content VALIDATION_SCRIPT.sql "'"
-          Get-Conent VALIDATION_SCRIPT.sql
+          Get-Content VALIDATION_SCRIPT.sql
     - task: SqlAzureDacpacDeployment@1
       inputs:
         azureSubscription: $(subscription)
