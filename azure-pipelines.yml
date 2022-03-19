@@ -15,17 +15,18 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
-          echo Creating File
+          echo Creating Deployment File
           cd sql
           Get-Content 10_SOURCE.sql, 20_ODS.sql, 30_CORE.sql, 40_MART.sql, 99_PROCEDURES.sql | Set-Content DEPLOYMENT_SCRIPT.sql
     - task: PowerShell@2
       inputs:
         targetType: 'inline'
         script: |
-          echo Creating File
+          echo Creating Validation File
           cd sql
           Get-Content 00_VALIDATE.sql, DEPLOYMENT_SCRIPT.sql | Set-Content VALIDATION_SCRIPT.sql
           Add-Content VALIDATION_SCRIPT.sql "'"
+          Get-Conent VALIDATION_SCRIPT.sql
     - task: SqlAzureDacpacDeployment@1
       inputs:
         azureSubscription: $(subscription)

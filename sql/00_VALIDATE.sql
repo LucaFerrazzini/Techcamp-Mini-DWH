@@ -1,4 +1,4 @@
-CREATE OR ALTER PROCEDURE IsValidSQL (@sql varchar(max)) AS
+CREATE OR ALTER PROCEDURE VALIDATE_SQL (@sql varchar(max)) AS
 BEGIN
     BEGIN TRY
         SET @sql = 'set parseonly on;' + REPLACE ( @sql , '''' , '''''' );
@@ -10,7 +10,6 @@ BEGIN
                1 -- State.  
                ); 
     END CATCH;
-    RETURN(0);
 END; -- IsValidSQL
 
-EXEC IsValidSQL @sql = '
+EXEC VALIDATE_SQL @sql = '
