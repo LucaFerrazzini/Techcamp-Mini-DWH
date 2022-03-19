@@ -32,6 +32,8 @@ stages:
     - task: InvokeRESTAPI@1
       inputs:
         azureSubscription: $(subscription)
+        connectionType: 'connectedServiceName'
+        serviceConnection: 'mini-dwh-service-connection'
         method: 'POST' # Options: OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, PATCH
         headers: '{Content-Type:application/json}' 
         body: '{"status":"go"}'
