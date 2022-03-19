@@ -33,7 +33,7 @@ stages:
           Get-Content 00_VALIDATE.sql, DEPLOYMENT_SCRIPT_CLEAN.sql | Set-Content VALIDATION_SCRIPT.sql
           Add-Content VALIDATION_SCRIPT.sql -Value "'"
 
-          Invoke-Sqlcmd -ServerInstance $(server) -Database "mini-dwh-db" -Username $(user) -Password $(password)  -Inputfile sqlFile  -ConnectionTimeout 120 -Verbose
+          Invoke-Sqlcmd -ServerInstance $SERVER -Database "mini-dwh-db" -Username $USER -Password $PASSWORD  -Inputfile $SQLFILE  -ConnectionTimeout 120 -Verbose
     - task: SqlAzureDacpacDeployment@1
       inputs:
         azureSubscription: $(subscription)
