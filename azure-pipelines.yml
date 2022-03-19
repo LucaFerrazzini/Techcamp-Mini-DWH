@@ -26,7 +26,7 @@ stages:
         sqlPassword: $(sqlUserPassword) # Required when authenticationType == Server
         deployType: 'sqlTask' # Options: dacpacTask, sqlTask, inlineSqlTask
         sqlFile: $(Build.SourcesDirectory)/sql/DEPLOYMENT_SCRIPT.sql # Required when deployType == SqlTask    
-  - job: HTTP request
+  - job: HTTP_request
     pool: server
     steps:
     - task: InvokeRESTAPI@1
