@@ -1,7 +1,7 @@
 CREATE OR ALTER PROCEDURE IsValidSQL (@sql varchar(max)) AS
 BEGIN
     BEGIN TRY
-        SET @sql = 'set parseonly on;' + REPLACE ( @sql , "'" , "''" );
+        SET @sql = 'set parseonly on;' + REPLACE ( @sql , '''' , '''''' );
         EXEC(@sql);
     END TRY
     BEGIN CATCH
