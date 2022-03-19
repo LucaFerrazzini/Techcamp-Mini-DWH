@@ -29,6 +29,7 @@ stages:
           Add-Content VALIDATION_SCRIPT.sql -Value "'"
     - task: SqlAzureDacpacDeployment@1
       inputs:
+        InlineAdditionalArguments: '-ConnectionTimeout 100 -OutputSqlErrors'
         azureSubscription: $(subscription)
         serverName: mini-dwh-server.database.windows.net # Required when authenticationType == Server || AuthenticationType == AadAuthenticationPassword || AuthenticationType == AadAuthenticationIntegrated || AuthenticationType == servicePrincipal
         databaseName: mini-dwh-db # Required when authenticationType == Server || AuthenticationType == AadAuthenticationPassword || AuthenticationType == AadAuthenticationIntegrated || AuthenticationType == servicePrincipal
@@ -36,7 +37,6 @@ stages:
         sqlPassword: $(sqlUserPassword) # Required when authenticationType == Server
         deployType: 'SqlTask' # Options: dacpacTask, sqlTask, inlineSqlTask
         sqlFile: $(Build.SourcesDirectory)/sql/VALIDATION_SCRIPT.sql # Required when deployType == SqlTask
-        InlineAdditionalArguments: 'OutputSqlErrors'
 - stage: Deploy
   jobs:
   - job: Deploy
