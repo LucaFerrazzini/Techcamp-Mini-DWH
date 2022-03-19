@@ -5,6 +5,9 @@ BEGIN
         EXEC(@sql);
     END TRY
     BEGIN CATCH
+        RAISERROR('test',16,1);
+        RAISERROR('##vso[task.logissue type=error]SQL-Script contains synrtax-errors!',16,1);
+        PRINT 'test';
         PRINT '##vso[task.logissue result=failed]SQL-Script contains synrtax-errors!';
     END CATCH;
 END; -- IsValidSQL
